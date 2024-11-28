@@ -8,7 +8,7 @@ let appleX = 4;
 
 let velocityY = 0;
 let velocityX = 0;
-
+score.innerText = 0
 function casualPosition(){
     appleY = Math.floor(Math.random() * 20) + 1;
     appleX = Math.floor(Math.random() * 20) + 1;
@@ -48,8 +48,10 @@ function startGame(){
         
     }
     
+    // eat the apple
     if(snakeY == appleY && snakeX == appleX){
         snakeBody.push([snakeX, snakeY])
+        score.innerText = Number(score.innerText) + Number(sumDifficulty(snakeBody.length))
         // casualPosition()
     }
     if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
@@ -112,4 +114,8 @@ function gameOver(reason){
     // casualPosition()
     velocityY = 0;
     velocityX = 0;
+}
+
+function sumDifficulty(snakeLenght){
+    return Math.floor(10 + snakeLenght * 2);
 }
