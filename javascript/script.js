@@ -1,33 +1,51 @@
 const field = document.querySelector('.grid')
 
 let snakeY = 10;
-let snakeX = 6;
-
+let snakeX = 10;
+let snakeBody = [[snakeX, snakeY]];
 let appleY = 2;
-let appleX = 1;
+let appleX = 4;
 
 let velocityY = 0;
 let velocityX = 0;
 
+function casualPosition(){
+    appleY = Math.floor(Math.random() * 20) + 1;
+    appleX = Math.floor(Math.random() * 20) + 1;
+}
+
 function startGame(){
     snakeY += velocityY;
     snakeX += velocityX;
-    field.innerHTML = `
-        <div id='food' style="grid-row: ${appleY}; grid-column: ${appleX};"></div>
-        <div id="snake" style="grid-row: ${snakeY}; grid-column: ${snakeX};"></div>
-    `
+    snakeBody.unshift([snakeX, snakeY])
+    let updateGame = ` 
+        <div id='food' style="grid-row: ${appleY}; grid-column: ${appleX};"></div>`
+    for (let i = 0; i < snakeBody.length; i++) {
+        updateGame += `
+        <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]};"></div>
+        `
+        
+    }
+    if(snakeY == appleY && snakeX == appleX){
+        snakeBody.unshift([snakeX, snakeY])
+        casualPosition()
+    }
+    if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
+        clearInterval(start);
+        setTimeout(() =>{
+            gameOver()
+           
+        }, 500)
+    }
+    field.innerHTML = updateGame
+    snakeBody.pop([snakeX, snakeY])
     
 }
 
 let start = setInterval(() =>{
     startGame()
-    if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
-        clearInterval(start);
-        setTimeout(() =>{
-            myModal.style = "display: block;"
-
-        }, 500)
-    }
+    
+    
 }, 200)
 
 document.addEventListener('keydown', function(e){
@@ -55,21 +73,21 @@ document.addEventListener('keydown', function(e){
 })
 
 closeModal.addEventListener('click', () =>{
-    snakeY = 10;
-    snakeX = 6;
-    appleY = 2;
-    appleX = 1;
-    velocityY = 0;
-    velocityX = 0;
+    
     myModal.style = "display: none;"
     start = setInterval(() =>{
         startGame()
-        if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
-            clearInterval(start);
-            setTimeout(() =>{
-                myModal.style = "display: block;"
-    
-            }, 500)
-        }
+        
     }, 200)
 })
+
+function gameOver(){
+    myModal.style = "display: block;"
+    snakeY = 10;
+    snakeX = 10;
+    snakeBody = [[snakeX, snakeY]];
+    casualPosition()
+    velocityY = 0;
+    velocityX = 0;
+}
+
