@@ -114,6 +114,7 @@ function gameOver(reason){
     casualPosition()
     velocityY = 0;
     velocityX = 0;
+    score.innerText = 0
 }
 
 function sumDifficulty(snakeLenght){
