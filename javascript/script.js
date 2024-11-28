@@ -1,5 +1,28 @@
+const field = document.querySelector('.grid')
 const snake = document.querySelector('.snake');
+const apple = document.querySelector('.food');
 
+let snakeY = 4;
+let snakeX = 6;
+
+let appleY = 2;
+let appleX = 1;
+
+
+
+function startGame(){
+    field.innerHTML += `
+        <div class='food' style="grid-row: ${appleY}; grid-column: ${appleX};"></div>
+    `
+    field.innerHTML +=  `
+        <div class="snake" style="grid-row: ${snakeY}; grid-column: ${snakeX};">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+    `
+}
+
+startGame();
 
 document.addEventListener('keydown', function(e){
     let press = e.key
