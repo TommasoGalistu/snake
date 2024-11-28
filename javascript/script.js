@@ -25,10 +25,10 @@ function startGame(){
     snakeBody.pop([snakeX, snakeY])
     snakeY += velocityY;
     snakeX += velocityX;
+    
     snakeBody.unshift([snakeX, snakeY])
     for (let i = 1; i < snakeBody.length; i++) {
         if(snakeBody[0][0] == snakeBody[i][0] && snakeBody[0][1] == snakeBody[i][1]){
-            console.log(snakeBody)
             gameOver('Il serpente si è mangiato da solo.')
         }
     }
@@ -52,7 +52,7 @@ function startGame(){
     if(snakeY == appleY && snakeX == appleX){
         snakeBody.push([snakeX, snakeY])
         score.innerText = Number(score.innerText) + Number(sumDifficulty(snakeBody.length))
-        // casualPosition()
+        casualPosition()
     }
     if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
         gameOver('Hai toccato le pareti. ')
@@ -111,7 +111,7 @@ function gameOver(reason){
     snakeY = 10;
     snakeX = 10;
     snakeBody = [[snakeX, snakeY]];
-    // casualPosition()
+    casualPosition()
     velocityY = 0;
     velocityX = 0;
 }
