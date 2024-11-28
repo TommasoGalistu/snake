@@ -42,3 +42,28 @@
     
     
 }
+
+#myModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 20%;
+    background-color: rgba(255, 255, 255);
+    z-index: 1000; 
+}
+
+#closeModal{
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.contText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

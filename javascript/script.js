@@ -21,6 +21,13 @@ function startGame(){
 
 let start = setInterval(() =>{
     startGame()
+    if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
+        clearInterval(start);
+        setTimeout(() =>{
+            myModal.style = "display: block;"
+
+        }, 500)
+    }
 }, 200)
 
 document.addEventListener('keydown', function(e){
@@ -45,4 +52,24 @@ document.addEventListener('keydown', function(e){
     
  
 
+})
+
+closeModal.addEventListener('click', () =>{
+    snakeY = 10;
+    snakeX = 6;
+    appleY = 2;
+    appleX = 1;
+    velocityY = 0;
+    velocityX = 0;
+    myModal.style = "display: none;"
+    start = setInterval(() =>{
+        startGame()
+        if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
+            clearInterval(start);
+            setTimeout(() =>{
+                myModal.style = "display: block;"
+    
+            }, 500)
+        }
+    }, 200)
 })
