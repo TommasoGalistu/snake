@@ -3,21 +3,69 @@
     margin:0;
     box-sizing: border-box;
 }
+body{
+    background-color: black;
+    color: white;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: black;
+    color: white;
+    height: 5rem;
+    width: 100%;
+    h2:hover{
+        cursor: pointer;
+    }
+    a{
+        color: yellow;
+    }
+}
+main{
 
+}
+footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    
+    .containerFooter{
+
+    }
+    a{
+        color: white;
+    }
+    a:hover{
+        color: aqua;
+    }
+}
 .container{
     background-color: black;
     color: white;
-    height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.contRules{
+    width: 40%;
+    display: none;
+}
+.containerGame{
+    text-align: center;
 }
 .title{
     background-color: grey;
     padding: 2rem;
     width: 20rem;
+}
+.contTextScore{
+    padding: 0.5rem;
+}
+#score{
+    font-size: 1.2rem;
 }
 .grid{
     height: 20rem;
@@ -36,7 +84,6 @@
 
 #snake{
     background-color: green;
-    border: 1px solid black;
     font-size: 0.5rem;
 
 }
@@ -44,6 +91,7 @@
 #myModal {
     display: none;
     position: fixed;
+    color: black;
     padding: 1rem;
     top: 50%;
     left: 50%;
@@ -66,4 +114,62 @@
     h3,h4,p{
         margin-bottom: 0.5rem;
     }
+}
+
+
+
+/* .title {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+} */
+.subtitle {
+    color: #e76f51;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+.paragraph {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+.rules {
+    list-style: square;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+.rule-item {
+    margin-bottom: 10px;
+}
+.highlight {
+    color: #e63946;
+    font-weight: bold;
+}
+.schema-container {
+    margin: 30px auto;
+    max-width: 700px;
+    text-align: center;
+}
+.schema-description {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #2a9d8f;
+}
+.schema {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+.schema th, .schema td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+.schema th {
+    background-color: #264653;
+    color: white;
+    font-size: 1rem;
+}
+.schema td {
+    font-size: 0.9rem;
 }

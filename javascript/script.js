@@ -1,10 +1,11 @@
 const field = document.querySelector('.grid')
-
-let headY = 5;
-let headX = 5;
+const rulePage = document.querySelector('.contRules')
+const gamePage = document.querySelector('.containerGame')
+let headY = 10;
+let headX = 10;
 let snakeBody = [[headX, headY]];
-let appleY = 1;
-let appleX = 1;
+let appleY = 5;
+let appleX = 10;
 
 let velocityY = 0;
 let velocityX = 0;
@@ -36,16 +37,17 @@ function startGame(){
     let updateGame = ` 
         <div id='food' style="grid-row: ${appleY}; grid-column: ${appleX};"></div>`
     for (let i = 0; i < snakeBody.length; i++) {
-        if(!i){
-            updateGame += `
-            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]}; background-color: red;">${i}</div>
-            `
+        // debug the head is red
+        // if(!i){
+        //     updateGame += `
+        //     <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]}; background-color: red;"></div>
+        //     `
 
-        }else{
+        // }else{
             updateGame += `
-            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]};">${i}</div>
+            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]};"></div>
             `
-        }
+        // }
         
     }
     
@@ -73,7 +75,11 @@ let start = setInterval(() =>{
     startGame()
 }, 200)
 
+// possibility for change page
+let changePage = true;
 document.addEventListener('keydown', function(e){
+    // you cant change the page
+    changePage = false
     
     let press = e.key
     
@@ -94,7 +100,7 @@ document.addEventListener('keydown', function(e){
         velocityY = 0;
         velocityX = 1;
     }
-    // debug
+    // debug for try the movement every frame
     // console.log(snakeBody[0])
     // console.log(snakeBody[1] ?? '')
     // console.log(snakeBody[2] ?? '')
@@ -105,10 +111,11 @@ document.addEventListener('keydown', function(e){
     // console.log(snakeBody[2] ?? '')
     // console.log(snakeBody[3] ?? '')
 })
-// debug
+// debug for try the movement every frame
 // startGame()
+
 closeModal.addEventListener('click', () =>{
-    
+    changePage = true
     myModal.style = "display: none;"
     start = setInterval(() =>{
         startGame()
@@ -124,12 +131,35 @@ function gameOver(reason){
     headY = 10;
     headX = 10;
     snakeBody = [[headX, headY]];
-    // casualPosition()
+    casualPosition()
     velocityY = 0;
     velocityX = 0;
     score.innerText = 0
 }
 
+
 function sumDifficulty(snakeLenght){
     return Math.floor(10 + snakeLenght * 2);
 }
+
+
+
+// close and open window
+playMenu.addEventListener('click', () =>{
+    gamePage.style = 'display: block'
+    rulePage.style = 'display: none'
+    clearInterval(start);
+    start = setInterval(() =>{
+        startGame()
+        
+    }, 200)
+})
+ruleMenu.addEventListener('click', () =>{
+    if(changePage){
+        clearInterval(start);
+        gamePage.style = 'display: none'
+        rulePage.style = 'display: block'
+    }
+})
+
+

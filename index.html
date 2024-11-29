@@ -7,19 +7,97 @@
     <title>Snake</title>
 </head>
 <body>
-    <div class="container">
-        <div class="title">
-            Premi un tasto direzionale per cominciare
-        </div>
-        <span>Punteggio: </span>
-        <span id="score"></span>
-        <div class="grid">
+    <header>
+        <h2 id="ruleMenu">Regole</h2>
+        <h2 id="playMenu">Gioca</h2>
+        <h2 id="siteMenu"><a href="https://tommasogalistu.com/" target="_blank">Portfolio</a></h2>
+    </header>
+    <main>
+        <div class="container">
+            <div class="contRules">
+                <section>
+                    <h2 class="subtitle">La missione</h2>
+                    <p class="paragraph">
+                        Sei un serpente affamato e il tuo obiettivo è mangiare le mele. Ogni mela ti renderà più lungo e aumenterà il tuo punteggio. 
+                        Ma attento: il mondo è pieno di pericoli, e tu sei piuttosto goffo!
+                    </p>
+                </section>
             
+                <section>
+                    <h2 class="subtitle">Regole principali</h2>
+                    <ul class="rules">
+                        <li class="rule-item"><span class="highlight">Mela o morte:</span> mangia le mele per sopravvivere. Nient'altro importa.</li>
+                        <li class="rule-item"><span class="highlight">Muri:</span> sono duri e non si spostano. Se li tocchi, è game over.</li>
+                        <li class="rule-item"><span class="highlight">Autocannibalismo:</span> non mangiare te stesso, non è salutare.</li>
+                        <li class="rule-item"><span class="highlight">Mai tornare indietro:</span> sei un serpente, non un boomerang.</li>
+                        <li class="rule-item"><span class="highlight">Punti:</span> ogni mela aumenta il tuo punteggio seguendo la logica della difficoltà crescente.</li>
+                    </ul>
+                </section>
+            
+                <section class="schema-container">
+                    <h2 class="subtitle">Schema del punteggio</h2>
+                    <p class="schema-description">Il punteggio viene calcolato secondo questa formula:</p>
+                    <pre class="schema-description">10 + (lunghezza del serpente x 2)</pre>
+                    <p class="schema-description">Ecco quanto valgono le prime 5 mele:</p>
+                    <table class="schema">
+                        <thead>
+                            <tr>
+                                <th># Mela</th>
+                                <th>Lunghezza Serpente</th>
+                                <th>Punteggio Totale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>5</td>
+                                <td>20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <div class="containerGame">
+    
+                <div class="title">
+                    Premi un tasto direzionale per cominciare
+                </div>
+                <div class="contTextScore">
+                    <span>Punteggio: </span>
+                    <span id="score"></span>
+    
+                </div>
+                <div class="grid">
+                    
+        
+                    
+                    
+                </div>
+            </div>
+        </div>
 
-            
-            
-        </div>
-    </div>
+    </main>
+    
         <!-- Modale -->
     <div id="myModal">
         <div class="modal-content">
