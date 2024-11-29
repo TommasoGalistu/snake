@@ -1,14 +1,15 @@
 const field = document.querySelector('.grid')
 
-let snakeY = 10;
-let snakeX = 10;
-let snakeBody = [[snakeX, snakeY]];
-let appleY = 2;
-let appleX = 4;
+let headY = 5;
+let headX = 5;
+let snakeBody = [[headX, headY]];
+let appleY = 1;
+let appleX = 1;
 
 let velocityY = 0;
 let velocityX = 0;
 score.innerText = 0
+
 function casualPosition(){
     appleY = Math.floor(Math.random() * 20) + 1;
     appleX = Math.floor(Math.random() * 20) + 1;
@@ -22,14 +23,14 @@ function casualPosition(){
 
 function startGame(){
 
-    snakeBody.pop([snakeX, snakeY])
-    snakeY += velocityY;
-    snakeX += velocityX;
+    snakeBody.pop([headX, headY])
+    headY += velocityY;
+    headX += velocityX;
     
-    snakeBody.unshift([snakeX, snakeY])
+    snakeBody.unshift([headX, headY])
     for (let i = 1; i < snakeBody.length; i++) {
         if(snakeBody[0][0] == snakeBody[i][0] && snakeBody[0][1] == snakeBody[i][1]){
-            gameOver('Il serpente si è mangiato da solo.')
+            gameOver('Devi mangiare la mela non il serpente')
         }
     }
     let updateGame = ` 
@@ -37,25 +38,26 @@ function startGame(){
     for (let i = 0; i < snakeBody.length; i++) {
         if(!i){
             updateGame += `
-            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]}; background-color: red;"></div>
+            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]}; background-color: red;">${i}</div>
             `
 
         }else{
             updateGame += `
-            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]};"></div>
+            <div id="snake" style="grid-row: ${snakeBody[i][1]}; grid-column: ${snakeBody[i][0]};">${i}</div>
             `
         }
         
     }
     
     // eat the apple
-    if(snakeY == appleY && snakeX == appleX){
-        snakeBody.push([snakeX, snakeY])
+    if(headY == appleY && headX == appleX){
+        snakeBody.push([headX, headY])
         score.innerText = Number(score.innerText) + Number(sumDifficulty(snakeBody.length))
         casualPosition()
+       
     }
-    if(snakeY == 0 || snakeX == 0 || snakeY == 20 || snakeX == 20){
-        gameOver('Hai toccato le pareti. ')
+    if(headY == 0 || headX == 0 || headY == 21 || headX == 21){
+        gameOver('Hai preso il muro Fratelli')
         
     }
     // console.log(snakeBody)
@@ -70,7 +72,9 @@ function startGame(){
 let start = setInterval(() =>{
     startGame()
 }, 200)
+
 document.addEventListener('keydown', function(e){
+    
     let press = e.key
     
     if(press == 'ArrowDown'){
@@ -90,11 +94,19 @@ document.addEventListener('keydown', function(e){
         velocityY = 0;
         velocityX = 1;
     }
-    
- 
-
+    // debug
+    // console.log(snakeBody[0])
+    // console.log(snakeBody[1] ?? '')
+    // console.log(snakeBody[2] ?? '')
+    // console.log(snakeBody[3] ?? '')
+    // startGame()
+    // console.log(snakeBody[0])
+    // console.log(snakeBody[1] ?? '')
+    // console.log(snakeBody[2] ?? '')
+    // console.log(snakeBody[3] ?? '')
 })
-
+// debug
+// startGame()
 closeModal.addEventListener('click', () =>{
     
     myModal.style = "display: none;"
@@ -106,12 +118,13 @@ closeModal.addEventListener('click', () =>{
 
 function gameOver(reason){
     clearInterval(start);
-    textModal.innerText = reason + "GAME OVER!!!!"
+    textModal.textContent = reason
+    scoreText.textContent = `Hai totalizzato ${score.textContent} punti`
     myModal.style = "display: block;"
-    snakeY = 10;
-    snakeX = 10;
-    snakeBody = [[snakeX, snakeY]];
-    casualPosition()
+    headY = 10;
+    headX = 10;
+    snakeBody = [[headX, headY]];
+    // casualPosition()
     velocityY = 0;
     velocityX = 0;
     score.innerText = 0
