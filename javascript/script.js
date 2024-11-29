@@ -55,6 +55,11 @@ function startGame(){
     if(headY == appleY && headX == appleX){
         snakeBody.push([headX, headY])
         score.innerText = Number(score.innerText) + Number(sumDifficulty(snakeBody.length))
+        
+        if(score.textContent >= 163590){
+            OverText.innerText = "HAI VINTO!!!";
+            gameOver("Sei il serpente più lungo..vallo a dire alla mamma, vallo a dire all'avvocato!!!")
+        }
         casualPosition()
        
     }
@@ -100,7 +105,7 @@ document.addEventListener('keydown', function(e){
         velocityY = 0;
         velocityX = 1;
     }
-    // debug for try the movement every frame
+    // // debug for try the movement every frame
     // console.log(snakeBody[0])
     // console.log(snakeBody[1] ?? '')
     // console.log(snakeBody[2] ?? '')
@@ -111,7 +116,7 @@ document.addEventListener('keydown', function(e){
     // console.log(snakeBody[2] ?? '')
     // console.log(snakeBody[3] ?? '')
 })
-// debug for try the movement every frame
+// // debug for try the movement every frame
 // startGame()
 
 closeModal.addEventListener('click', () =>{
